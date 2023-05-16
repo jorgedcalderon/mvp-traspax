@@ -11,7 +11,7 @@ function FormVenta({ numPasajeros }) {
 
   const onFinish = (values) => {
     // Enviar datos a la base de datos
-    console.log('Valores:', values);
+    // console.log('Valores:', values);
     // Ir a la página de listado de ventas
     router.push('/ventas/list');
   };
