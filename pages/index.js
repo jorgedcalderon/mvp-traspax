@@ -1,3 +1,8 @@
 export default function Home() {
-  return <div />;
+
+  return (
+    <div>
+      <h1>Traspax</h1>     
+    </div>
+  );
 }
