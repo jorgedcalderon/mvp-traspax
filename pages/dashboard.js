@@ -13,10 +13,11 @@ export default function Dashboard(props) {
     }
 
     const handleAgregarPasajeros = () => {
-        // Aquí puedes realizar cualquier lógica adicional antes de redirigir a /venta/newVenta
-        // Por ejemplo, obtener datos adicionales de la agencia o del usuario
-    
-        // Redirigir a la página de venta/newVenta
+        router.push({
+            pathname: '/venta/newVenta',
+            query: { numPax, agencia: JSON.stringify(agencia) }
+          });
+          
         router.push('/venta/newVenta');
       };
 
@@ -60,7 +61,7 @@ Dashboard.getLayout = function getLayout(page, pageProps) {
     async getServerSideProps(context) {
         const session = getSession(context.req, context.res);
         // const client = await clientPromise;
-        // const db = await client.db("TraspaxDb");
+        // const db = await client.db("TraspaxMvp");
         // const agencia = await db.collection("Agencia").findOne({email: session.user.email});
         
         return {
