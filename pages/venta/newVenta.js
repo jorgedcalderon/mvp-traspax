@@ -1,6 +1,7 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { AppLayout } from '../../components/AppLayout';
 import { useState } from 'react';
+import FormVenta from '../../components/FormVenta';
 
 // Función para obtener la información de la agencia desde la base de datos
 async function fetchAgencia() {
@@ -19,6 +20,7 @@ async function fetchAgencia() {
 export default function NewVenta(props) {
   const [numPasajeros, setNumPasajeros] = useState(1); // valor predeterminado de 1
   const { agencia } = props;
+  console.log('Agencia:', agencia);
 
   if (!agencia) {
     return <div>Cargando...</div>;
@@ -38,6 +40,7 @@ export default function NewVenta(props) {
         ))}
       </select>
       <button onClick={() => console.log(numPasajeros)}>¡Vamos!</button>
+      <FormVenta numPasajeros={numPasajeros} />
     </div>
   );
 }
@@ -47,8 +50,8 @@ NewVenta.getLayout = function getLayout(page, pageProps) {
 };
 
 export const getServerSideProps = withPageAuthRequired(async ({ req }) => {
-    const agencia = await fetchAgencia(); // replace this with code to fetch the agency from the database
-    return {
-        props: { agencia },
-    };
+  const agencia = await fetchAgencia(); // replace this with code to fetch the agency from the database
+  return {
+    props: { agencia },
+  };
 });
