@@ -1,5 +1,5 @@
 import { getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
-// import clientPromise from '../lib/mongodb';
+import clientPromise from '../lib/mongodb';
 import { AppLayout } from '../components/AppLayout';
 import { useRouter } from 'next/router';
 
@@ -59,13 +59,13 @@ Dashboard.getLayout = function getLayout(page, pageProps) {
   
   export const getServerSideProps = withPageAuthRequired({
     async getServerSideProps(context) {
-        const session = getSession(context.req, context.res);
-        // const client = await clientPromise;
-        // const db = await client.db("TraspaxMvp");
-        // const agencia = await db.collection("Agencia").findOne({email: session.user.email});
+        const session = await getSession(context.req, context.res);
+        const client = await clientPromise;
+        const db = await client.db("TraspaxMvp");
+        const agencia = await db.collection("Agencia").findOne({email: session.user.email});
         
         return {
-            props: JSON.stringify(session)
+            props: JSON.stringify(agencia)
         };
     }
   });

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import FormVenta from '../../components/FormVenta';
 
 export default function NewVenta(props) {
-  console.log('Props:', props);
+  // console.log('Props:', props);
   const { numPax, agencia } = props;
 
   return (
@@ -23,8 +23,8 @@ NewVenta.getLayout = function getLayout(page, pageProps) {
 
 export const getServerSideProps = withPageAuthRequired({
     async getServerSideProps(context) {
+      // console.log('Context:', context.query);
         // const { numPax, agencia } = context.req.query;
-        console.log('Context:', context);
         return {
             // props: {
             //     numPax: parseInt(numPax), // Convertir a número entero
